@@ -15,8 +15,8 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-fetchToys()
-// When the page loads, make a 'GET' request to fetch all the toy objects. With the
+
+
 // response data, make a `<div class="card">` for each toy and add it to the
 // toy-collection `div`.
 
@@ -24,10 +24,32 @@ fetchToys()
 // fetch
 // find HTML elements to refer to
 
+fetchToys()
+
 function fetchToys() {
   fetch("http://localhost:3000/toys")
   .then(resp => resp.json())
   .then(function(toys) {
-    console.log(toys)
+    addToyInfo(toys)
   })
 }
+
+function addToyInfo(toys) {
+  for (const toy of toys) {
+    createToyCard()
+  }
+}
+
+function createToyCard() {
+  const toyCollection = document.getElementById("toy-collection")
+  let toyCard = document.createElement("div")
+  toyCard.setAttribute("class", "card")
+  toyCollection.append(toyCard)
+}
+
+// <div class="card">
+//     <h2>Woody</h2>
+//     <img src=toy_image_url class="toy-avatar" />
+//     <p>4 Likes </p>
+//     <button class="like-btn">Like <3</button>
+//   </div>
