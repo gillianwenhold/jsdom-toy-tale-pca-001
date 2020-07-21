@@ -37,6 +37,7 @@ function fetchToys() {
 function addToyInfo(toys) {
   for (const toy of toys) {
     createToyCard()
+
   }
 }
 
@@ -45,11 +46,12 @@ function createToyCard() {
   let toyCard = document.createElement("div")
   toyCard.setAttribute("class", "card")
   toyCollection.append(toyCard)
-}
 
-// <div class="card">
-//     <h2>Woody</h2>
-//     <img src=toy_image_url class="toy-avatar" />
-//     <p>4 Likes </p>
-//     <button class="like-btn">Like <3</button>
-//   </div>
+  let toyH2 = document.createElement("h2")
+  let toyImg = document.createElement("img")
+  let toyLikes = document.createElement("p")
+  let toyBtn = document.createElement("button")
+
+  toyImg.setAttribute("class", "toy-avatar")
+  toyBtn.setAttribute("class", "like-btn")
+}
