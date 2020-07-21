@@ -15,15 +15,6 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-
-
-// response data, make a `<div class="card">` for each toy and add it to the
-// toy-collection `div`.
-
-// DOM content load, you'll need a fetch to get all toy objects
-// fetch
-// find HTML elements to refer to
-
 fetchToys()
 
 function fetchToys() {
@@ -36,22 +27,34 @@ function fetchToys() {
 
 function addToyInfo(toys) {
   for (const toy of toys) {
-    createToyCard()
-
+    createToyCard(toy)
   }
 }
 
-function createToyCard() {
+function createToyCard(toy) {
   const toyCollection = document.getElementById("toy-collection")
   let toyCard = document.createElement("div")
   toyCard.setAttribute("class", "card")
-  toyCollection.append(toyCard)
 
   let toyH2 = document.createElement("h2")
   let toyImg = document.createElement("img")
   let toyLikes = document.createElement("p")
   let toyBtn = document.createElement("button")
 
+  toyH2.innerHTML = toy.name
+  toyLikes.innerHTML = `${toy.likes} Likes`
+  toyBtn.innerHTML = "Like <3"
+
+  toyImg.setAttribute("src", toy.image)
+
   toyImg.setAttribute("class", "toy-avatar")
   toyBtn.setAttribute("class", "like-btn")
+
+  toyCard.append(toyH2, toyImg, toyLikes, toyBtn)
+  toyCollection.append(toyCard)
 }
+
+
+// When a user submits the toy form
+// a POST request is sent to http://localhost:3000/toys
+// and the new toy is added to Andy's Toy Collection.
